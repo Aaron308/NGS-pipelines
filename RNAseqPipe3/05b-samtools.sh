@@ -39,13 +39,13 @@ outdir="${sampleFolder}/${sample}"
 outsam="$(ls $sample_dir/*.sam)"
 
 #Specifies that the bam output file will be stored in the output directory, with the file name 'sample.''.bam' has not been added as samtools sort -f currently (29/4/14) has a bug. 
-outbam="${outdir}/${sample}.bam" # no .bam, as samtools sort -f has a bug.
+outbam="${outdir}/${sample}" # no .bam, as samtools sort -f has a bug.
 
 #Specifies that the temporary bam output file will be stored in the output directory with the file name 'random.bam.' A temporary bam file has been created due to samtools having a bug with the bam files (Kevins hackery).
 tmpbam="${outdir}/${RANDOM}.bam"
 
 echo "samtools view -S -u $outsam > ${tmpbam}
-samtools sort -m 2G ${tmpbam} $outbam
+samtools sort -m 2G ${tmpbam} ${outbam}.bam
 samtools index ${outbam}.bam
 rm -v ${outsam} ${tmpbam}"
 
@@ -53,10 +53,10 @@ rm -v ${outsam} ${tmpbam}"
 samtools view -S -u $outsam > ${tmpbam}
 
 #Sort the temporary bam file by chromosomal position, and save the sorted file.
-samtools sort -m 2G -o $outbam ${tmpbam}
+samtools sort -m 2G -o ${outbam}.bam ${tmpbam}
 
 #Make an index of the sorted bam file
-samtools index ${outbam}
+samtools index ${outbam}.bam
 
 #Delete the temporary bam.
 rm -v ${outsam} ${tmpbam}
