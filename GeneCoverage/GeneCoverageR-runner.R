@@ -11,14 +11,12 @@ fi
 #
 
 usage="USAGE:
-GeneCoverageR-runner.R <distance beds folder> <threads>"
+GeneCoverageR-runner.R <distance beds folder> <threads> <plot type>"
 
 ######### Setup ################
 alignFolder=$1
 threads=$2
-#minLength=$3
-#trimLength=$4
-#minCoverage=$5
+plotType=$3
 
 if [ "$#" -lt "2" ]
 then
@@ -50,7 +48,7 @@ cat $script > "${logdir}/script.log"
 cat $0 > "${logdir}/runner.log"
 cat $script
 
-findSamples | parallel -j $threads R -f $script --args {} $alignFolder $outdir \>${logdir}/{}.log 2\>\&1
+findSamples | parallel -j $threads R -f $script --args {} $alignFolder $plotType $outdir \>${logdir}/{}.log 2\>\&1
 
 #To run:
 #Must be run after 27 which generates the .bed.gz files
