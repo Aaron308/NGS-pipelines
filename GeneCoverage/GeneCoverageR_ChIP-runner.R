@@ -11,7 +11,7 @@ fi
 #
 
 usage="USAGE:
-GeneCoverageR-runner.R <distance beds folder> <threads>"
+GeneCoverageR-runner.R <distance beds folder> <threads> <plotType>"
 
 ######### Setup ################
 alignFolder=$1
