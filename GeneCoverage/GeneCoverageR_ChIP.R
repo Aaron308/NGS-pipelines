@@ -63,7 +63,7 @@ minus.1k.input <- subset(minus.input, minus.input$rel.dist >= -999)
 
 #look to subset coverage based on primary strand and input coverage information. Primary = matched, offstrand should be non genic strand
 minus.primary=subset(minus.1k.input,minus.1k.input$V10=='-')
-minus.offstrand=subset(minus.1k.input,mminus.1k.input$V10=='+')
+minus.offstrand=subset(minus.1k.input,minus.1k.input$V10=='+')
 
 #stats bin in 300 bins for both promary and offstrand using log transformed values
 minus.primary.bin=stats.bin(minus.primary$rel.dist,log(abs(minus.primary[,4])+1),N=200)
