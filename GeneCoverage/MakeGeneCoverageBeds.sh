@@ -51,8 +51,8 @@ rm -rv $outFolder/*real.bed
 
 #get distance measures
 #reference is TAIR10_crisp_gene_primary.bed - fancy exon bed file prepared by SRE
-closestBed -D "ref" -a $outFolder/$sample.plus_sorted.bed -b $reference > $outFolder/$sample.plus.dist.bed
-closestBed -D "ref" -a $outFolder/$sample.minus_sorted.bed -b $reference > $outFolder/$sample.minus.dist.bed
+~/bin/closestBed -D "ref" -a $outFolder/$sample.plus_sorted.bed -b $reference > $outFolder/$sample.plus.dist.bed
+~/bin/closestBed -D "ref" -a $outFolder/$sample.minus_sorted.bed -b $reference > $outFolder/$sample.minus.dist.bed
 #remove intermediate file
 rm -rv $outFolder/*_sorted.bed
 
