@@ -37,7 +37,7 @@ minus.input=read.delim(paste0(sPath, Sample, ".minus.dist.1k.bed"),head=F)
 real.dist=matrix(ifelse(minus.input[,10]=='+',-1*minus.input[,17],minus.input[,17]),ncol=1)
 minus.input=cbind(minus.input,real.dist)
 
-if(plotType=="TSS"){
+if(plotType=="TTS"){
   #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
 plus.input <- subset(plus.input, plus.input$real.dist >= 0)
 rel.dist=matrix(ifelse(plus.input[,10]=="+", (plus.input[,2] - (plus.input[,15])), (plus.input[,14] - (plus.input[,2]))), ncol=1)
