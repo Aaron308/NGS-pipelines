@@ -123,10 +123,13 @@ plus.input$real.dist + 1000,
 plus.input$real.dist)),
 ncol=1)
 plus.input=cbind(plus.input,rel.dist)
+  
+#subset to exons only
+plus.exon=subset(plus.input,plus.input$V12=='exon')  
 
 #look to subset coverage based on primary strand and input coverage information. Primary = matched, offstrand should be non genic strand
-plus.primary=subset(plus.input,plus.input$V10=='+')
-plus.offstrand=subset(plus.input,plus.input$V10=='-')
+plus.primary=subset(plus.exon,plus.exon$V10=='+')
+plus.offstrand=subset(plus.exon,plus.exon$V10=='-')
 
 #stats bin in 300 bins for both promary and offstrand
 plus.primary.bin=stats.bin(plus.primary$rel.dist,log(abs(plus.primary[,4])+1),N=300)
@@ -145,10 +148,13 @@ minus.input$real.dist + 1000,
 minus.input$real.dist)),
 ncol=1)
 minus.input=cbind(minus.input,rel.dist)
+  
+#subset to exons only
+minus.exon=subset(minus.input,minus.input$V12=='exon')  
 
 #look to subset coverage based on primary strand and input coverage information. Primary = matched, offstrand should be non genic strand
-minus.primary=subset(minus.plus,minus.plus$V10=='-')
-minus.offstrand=subset(minus.plus,minus.plus$V10=='+')
+minus.primary=subset(minus.exon,minus.exon$V10=='-')
+minus.offstrand=subset(minus.exon,minus.exon$V10=='+')
 
 #stats bin in 300 bins for both promary and offstrand using log transformed values
 minus.primary.bin=stats.bin(minus.primary$rel.dist,log(abs(minus.primary[,4])+1),N=300)
