@@ -133,10 +133,10 @@ plus.offstrand=subset(plus.exon,plus.exon$V10=='-')
 
 #stats bin in 300 bins for both promary and offstrand
 plus.primary.bin=stats.bin(plus.primary$rel.dist,log(abs(plus.primary[,4])+1),N=300)
-pepb=cbind(matrix(plus.primary.bin$centers,ncol=1),plus.primary.bin$stats["mean",])
+ppb=cbind(matrix(plus.primary.bin$centers,ncol=1),plus.primary.bin$stats["mean",])
 
 plus.offstrand.bin=stats.bin(plus.offstrand$rel.dist,log(abs(plus.offstrand[,4])+1),N=300)
-peob=cbind(matrix(plus.offstrand.bin$centers,ncol=1),plus.offstrand.bin$stats["mean",])
+pob=cbind(matrix(plus.offstrand.bin$centers,ncol=1),plus.offstrand.bin$stats["mean",])
 
 #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
 rel.dist=matrix(ifelse(minus.input$real.dist==0,
@@ -158,10 +158,10 @@ minus.offstrand=subset(minus.exon,minus.exon$V10=='+')
 
 #stats bin in 300 bins for both promary and offstrand using log transformed values
 minus.primary.bin=stats.bin(minus.primary$rel.dist,log(abs(minus.primary[,4])+1),N=300)
-mepb=cbind(matrix(minus.primary.bin$centers,ncol=1),minus.primary.bin$stats["mean",])
+mpb=cbind(matrix(minus.primary.bin$centers,ncol=1),minus.primary.bin$stats["mean",])
 
 minus.offstrand.bin=stats.bin(minus.offstrand$rel.dist,log(abs(minus.offstrand[,4])+1),N=300)
-meob=cbind(matrix(minus.offstrand.bin$centers,ncol=1),minus.offstrand.bin$stats["mean",])
+mob=cbind(matrix(minus.offstrand.bin$centers,ncol=1),minus.offstrand.bin$stats["mean",])
 
 pob[,2]=-pob[,2]
 mob[,2]=-mob[,2]
