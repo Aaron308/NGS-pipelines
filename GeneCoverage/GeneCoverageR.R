@@ -166,7 +166,7 @@ mob=cbind(matrix(minus.offstrand.bin$centers,ncol=1),minus.offstrand.bin$stats["
 pob[,2]=-pob[,2]
 mob[,2]=-mob[,2]
 
-sense=pepb
+sense=ppb
 sense[,2]=sense[,2]+mpb[,2]
 
 antisense=pob
