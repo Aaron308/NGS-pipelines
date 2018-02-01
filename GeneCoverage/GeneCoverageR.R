@@ -112,7 +112,7 @@ legend('topright',c('sense','antisense'),lty=1,col=c(1,2))
 dev.off()
   
   
-  } else {
+  } else if(plotType=="full"){
    #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
 rel.dist=matrix(ifelse(plus.input$real.dist==0,
 ifelse(plus.input[,10]=="-",
