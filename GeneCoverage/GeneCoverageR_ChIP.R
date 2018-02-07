@@ -138,7 +138,7 @@ dev.off()
   rel.dist=matrix(ifelse(plus.input$real.dist==0,
 ifelse(plus.input[,10]=="-",
 ((plus.input[,7] - (plus.input[,2]))/(plus.input[,7] - plus.input[,6]))*1000,
-(((plus.input[,2]) - plus.input[,16])/(plus.input[,7] - plus.input[,6]))*1000),
+(((plus.input[,2]) - plus.input[,6])/(plus.input[,7] - plus.input[,6]))*1000),
 ifelse(plus.input$real.dist>0,
 plus.input$real.dist + 1000,
 plus.input$real.dist)),
