@@ -26,27 +26,27 @@ outFolder <- paste0(outDir, "/", Sample)
 dir.create(outFolder, showWarnings = F, recursive = T)
 #####
 #read in plus file
-#plus.input=read.delim(paste0(sPath, Sample, ".plus.dist.1k.bed"),head=F)
-#develop strand directional positioning
-#real.dist=matrix(ifelse(plus.input[,10]=='+',-1*plus.input[,17],plus.input[,17]),ncol=1)
-#plus.input=cbind(plus.input,real.dist)
-
 plus.input=read.delim(paste0(sPath, Sample, ".plus.dist.1k.bed"),head=F)
 #develop strand directional positioning
-real.dist=matrix(ifelse(plus.input[,10]=='+',-1*plus.input[,11],plus.input[,11]),ncol=1)
+real.dist=matrix(ifelse(plus.input[,10]=='+',-1*plus.input[,17],plus.input[,17]),ncol=1)
 plus.input=cbind(plus.input,real.dist)
 
-#read in minus file
-#minus.input=read.delim(paste0(sPath, Sample, ".minus.dist.1k.bed"),head=F)
+#plus.input=read.delim(paste0(sPath, Sample, ".plus.dist.1k.bed"),head=F)
 #develop strand directional positioning
-#real.dist=matrix(ifelse(minus.input[,10]=='+',-1*minus.input[,17],minus.input[,17]),ncol=1)
-#minus.input=cbind(minus.input,real.dist)
+#real.dist=matrix(ifelse(plus.input[,10]=='+',-1*plus.input[,11],plus.input[,11]),ncol=1)
+#plus.input=cbind(plus.input,real.dist)
 
 #read in minus file
 minus.input=read.delim(paste0(sPath, Sample, ".minus.dist.1k.bed"),head=F)
 #develop strand directional positioning
-real.dist=matrix(ifelse(minus.input[,10]=='+',-1*minus.input[,11],minus.input[,11]),ncol=1)
+real.dist=matrix(ifelse(minus.input[,10]=='+',-1*minus.input[,17],minus.input[,17]),ncol=1)
 minus.input=cbind(minus.input,real.dist)
+
+#read in minus file
+#minus.input=read.delim(paste0(sPath, Sample, ".minus.dist.1k.bed"),head=F)
+#develop strand directional positioning
+#real.dist=matrix(ifelse(minus.input[,10]=='+',-1*minus.input[,11],minus.input[,11]),ncol=1)
+#minus.input=cbind(minus.input,real.dist)
 
 if(plotType=="TTS"){
   #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
@@ -125,25 +125,25 @@ dev.off()
   
   } else if(plotType=="full") {
    #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
-#rel.dist=matrix(ifelse(plus.input$real.dist==0,
-#ifelse(plus.input[,10]=="-",
-#((plus.input[,15] - (plus.input[,2]))/(plus.input[,15] - plus.input[,14]))*1000,
-#(((plus.input[,2]) - plus.input[,14])/(plus.input[,15] - plus.input[,14]))*1000),
-#ifelse(plus.input$real.dist>0,
-#plus.input$real.dist + 1000,
-#plus.input$real.dist)),
-#ncol=1)
-#plus.input=cbind(plus.input,rel.dist)
-  
-  rel.dist=matrix(ifelse(plus.input$real.dist==0,
+rel.dist=matrix(ifelse(plus.input$real.dist==0,
 ifelse(plus.input[,10]=="-",
-((plus.input[,7] - (plus.input[,2]))/(plus.input[,7] - plus.input[,6]))*1000,
-(((plus.input[,2]) - plus.input[,6])/(plus.input[,7] - plus.input[,6]))*1000),
+((plus.input[,15] - (plus.input[,2]))/(plus.input[,15] - plus.input[,14]))*1000,
+(((plus.input[,2]) - plus.input[,14])/(plus.input[,15] - plus.input[,14]))*1000),
 ifelse(plus.input$real.dist>0,
 plus.input$real.dist + 1000,
 plus.input$real.dist)),
 ncol=1)
 plus.input=cbind(plus.input,rel.dist)
+  
+  #rel.dist=matrix(ifelse(plus.input$real.dist==0,
+#ifelse(plus.input[,10]=="-",
+#((plus.input[,7] - (plus.input[,2]))/(plus.input[,7] - plus.input[,6]))*1000,
+#(((plus.input[,2]) - plus.input[,6])/(plus.input[,7] - plus.input[,6]))*1000),
+#ifelse(plus.input$real.dist>0,
+#plus.input$real.dist + 1000,
+#plus.input$real.dist)),
+#ncol=1)
+#plus.input=cbind(plus.input,rel.dist)
   
   
 
@@ -159,25 +159,25 @@ plus.offstrand.bin=stats.bin(plus.offstrand$rel.dist,log(abs(plus.offstrand[,4])
 peob=cbind(matrix(plus.offstrand.bin$centers,ncol=1),plus.offstrand.bin$stats["mean",])
 
 #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
-#rel.dist=matrix(ifelse(minus.input$real.dist==0,
-#ifelse(minus.input[,10]=="-",
-#((minus.input[,15] - (minus.input[,2]))/(minus.input[,15] - minus.input[,14]))*1000,
-#(((minus.input[,2]) - minus.input[,14])/(minus.input[,15] - minus.input[,14]))*1000),
-#ifelse(minus.input$real.dist>0,
-#minus.input$real.dist + 1000,
-#minus.input$real.dist)),
-#ncol=1)
-#minus.input=cbind(minus.input,rel.dist)
-  
-  rel.dist=matrix(ifelse(minus.input$real.dist==0,
+rel.dist=matrix(ifelse(minus.input$real.dist==0,
 ifelse(minus.input[,10]=="-",
-((minus.input[,7] - (minus.input[,2]))/(minus.input[,7] - minus.input[,6]))*1000,
-(((minus.input[,2]) - minus.input[,6])/(minus.input[,7] - minus.input[,6]))*1000),
+((minus.input[,15] - (minus.input[,2]))/(minus.input[,15] - minus.input[,14]))*1000,
+(((minus.input[,2]) - minus.input[,14])/(minus.input[,15] - minus.input[,14]))*1000),
 ifelse(minus.input$real.dist>0,
 minus.input$real.dist + 1000,
 minus.input$real.dist)),
 ncol=1)
 minus.input=cbind(minus.input,rel.dist)
+  
+  #rel.dist=matrix(ifelse(minus.input$real.dist==0,
+#ifelse(minus.input[,10]=="-",
+#((minus.input[,7] - (minus.input[,2]))/(minus.input[,7] - minus.input[,6]))*1000,
+#(((minus.input[,2]) - minus.input[,6])/(minus.input[,7] - minus.input[,6]))*1000),
+#ifelse(minus.input$real.dist>0,
+#minus.input$real.dist + 1000,
+#minus.input$real.dist)),
+#ncol=1)
+#minus.input=cbind(minus.input,rel.dist)
 
 #look to subset coverage based on primary strand and input coverage information. Primary = matched, offstrand should be non genic strand
 minus.primary=subset(minus.input,minus.input$V10=='-')
