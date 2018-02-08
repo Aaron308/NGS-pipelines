@@ -190,14 +190,14 @@ mepb=cbind(matrix(minus.primary.bin$centers,ncol=1),minus.primary.bin$stats["mea
 minus.offstrand.bin=stats.bin(minus.offstrand$rel.dist,log(abs(minus.offstrand[,4])+1),N=300)
 meob=cbind(matrix(minus.offstrand.bin$centers,ncol=1),minus.offstrand.bin$stats["mean",])
 
-pob[,2]=-pob[,2]
-mob[,2]=-mob[,2]
+peob[,2]=-peob[,2]
+meob[,2]=-meob[,2]
 
 sense=pepb
-sense[,2]=sense[,2]+mpb[,2]
+sense[,2]=sense[,2]+mepb[,2]
 
-antisense=pob
-antisense[,2]=antisense[,2]+mob[,2]
+antisense=peob
+antisense[,2]=antisense[,2]+meob[,2]
 
 out.table <- data.frame(cbind(sense,antisense[,2]))
 colnames(out.table) <- c("Position", "Sense", "Antisense")
@@ -209,10 +209,10 @@ write.csv(out.table, paste0(outFolder, "/",Sample, '_average_coverage.csv'))
 pdf(paste0(outFolder, "/",Sample, '_gene_coverge_plot_WC.pdf'),h=10,w=12)
 #pdf("test_strands.pdf",h=10,w=12)
 plot(x=NULL,y=NULL,xlim=c(-1000,2000),ylim=c(-5,5), main=Sample)
-lines(ppb,col=1,lwd=2)
-lines(pob,col=2,lwd=2)
-lines(mpb,col=3,lwd=2)
-lines(mob,col=4,lwd=2)
+lines(pepb,col=1,lwd=2)
+lines(peob,col=2,lwd=2)
+lines(mepb,col=3,lwd=2)
+lines(meob,col=4,lwd=2)
 
 abline(v=0,lty=2)
 abline(v=1000,lty=2)
