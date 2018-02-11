@@ -68,7 +68,7 @@ pob=cbind(matrix(plus.offstrand.bin$centers,ncol=1),plus.offstrand.bin$stats["me
 
 #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
 minus.input <- subset(minus.input, minus.input$real.dist >= 0)
-rel.dist=matrix(ifelse(plus.input[,10]=="+", (minus.input[,2] - (minus.input[,15])), (minus.input[,14] - (minus.input[,2]))), ncol=1)
+rel.dist=matrix(ifelse(minus.input[,10]=="+", (minus.input[,2] - (minus.input[,15])), (minus.input[,14] - (minus.input[,2]))), ncol=1)
 minus.input=cbind(minus.input,rel.dist)
 minus.1k.input <- subset(minus.input, minus.input$rel.dist >= -999)
 
@@ -126,7 +126,7 @@ dev.off()
 } else if(plotType=="TSS"){
   #create relative distance measure from coverage data start and entire gene (not just exon or intron) start stop.
 plus.input <- subset(plus.input, plus.input$real.dist <= 0)
-rel.dist=matrix(ifelse(plus.input[,10]=="+", (plus.input[,2] - (plus.input[,14])), (plus.input[,15] - (plus.input[,2]))), ncol=1)
+rel.dist=matrix(ifelse(minus.input[,10]=="+", (plus.input[,2] - (plus.input[,14])), (plus.input[,15] - (plus.input[,2]))), ncol=1)
 plus.input=cbind(plus.input,rel.dist)
 plus.1k.input <- subset(plus.input, plus.input$rel.dist <= 999)
 
