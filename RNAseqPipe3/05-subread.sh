@@ -41,8 +41,8 @@ outdir="${aligner}/${sample}"
 #Creates an output directory to put the returned files to go into once subread has been run on the sample. In this case, the output from subread for the sample should go into a folder containing the sample's name, located within the 'align' directory.
 mkdir ${outdir}
 
-#List all files ending with 'q.gz' (hack way of acpturing .fq.gz and fastq.gz) that are located within the specified sample directory and save these as the variable 'fastqs.'
-fastqs="$(ls $sample_dir/*q.gz)"
+#List all files ending with 'trimmed.fq' that are located within the specified sample directory and save these as the variable 'fastqs.'
+fastqs="$(ls $sample_dir/*trimmed.fq.gz)"
 
 numFqFiles=$(echo $fastqs | wc -w)
 
